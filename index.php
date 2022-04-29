@@ -21,7 +21,7 @@
   $result = array();
   $result["status"] = "success";
 
-  if (!isset($collection))
+  if (!isset($collection) && $command != "show")
     failure("no collection specified");
 
   $filename = $collection.".json";
@@ -106,8 +106,10 @@
 
     $id = uniqid();
     $json[$id] = $_data;
-    var_dump(json_encode($json));
     writeCollection($_filename, $json);
+
+    global $result;
+    $result["data"] = array("id" => $id);
   }
 
 
@@ -201,5 +203,6 @@
       failure(error_get_last()["message"].":".error_get_last()["line"]);
 
 	  fclose($file);
+    return true;
   }
 ?>
