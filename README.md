@@ -1,7 +1,8 @@
 # MingiDB
 An extremely minimal implementation of some database functionality for educational purposes.
-Mimics some commands used with MongoDB, but uses single json-files as collections.
-Not to be used for anything else than education...!
+Mimics some commands used with MongoDB, but uses single json-files as collections.  
+
+**Not to be used for anything else but education...!** 
 
 # Installation
 Simply copy the script file 'index.php' into a folder for your database on your server running php. Make sure it has the rights to create, delete and change files on your server.
