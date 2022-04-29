@@ -89,7 +89,7 @@
     $dir = scandir("./");
     foreach($dir as $value)
       if (substr($value, -5, 5) == ".json")
-        array_push($data, $value);
+        array_push($data, substr($value, 0, -5));
 
     $result["data"] = $data;
   }
