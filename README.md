@@ -17,7 +17,7 @@ The script returns a Json-string in the following format
 <pre>
 {'status':..., 'data':{...}}
 </pre>
-where status takes on the values 'success' or 'failure and data contains a Json-string with the results or an error message.
+where status takes on the values "success" or "failure" and data contains a Json-string with the results or an error message.
 
 ### Create a collection
 <pre>
