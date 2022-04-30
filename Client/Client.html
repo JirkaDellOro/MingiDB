@@ -15,7 +15,10 @@
     button {
       display: inline-block;
       width: 6em;
-      margin-top: 1em;
+      margin: 1em 0em;
+    }
+    #query {
+      width: 40em;
     }
   </style>
   <script src="Client.js"></script>
@@ -33,7 +36,6 @@
     </fieldset>
     <fieldset>
       <legend>Document</legend>
-      <span>Id</span><input type="text" name="id" id="" /><br />
       <span>Name</span><input type="text" name="name" id="" /><br />
       <span>Firstname</span><input type="text" name="firstname" id="" /><br />
       <span>Age</span><input type="text" name="age" id="" /><br />
@@ -41,7 +43,12 @@
       <button type="button">insert</button>
       <button type="button">delete</button>
       <button type="button">find</button>
-      <button type="button">update</button>
+      <button type="button">update</button><br>
+      <span>Id</span><input type="text" name="id" id="" /><br />
+    </fieldset>
+    <fieldset>
+      <legend>Query</legend>
+      <input type="text" disabled id="query" /><br />
     </fieldset>
     <fieldset>
       <legend>Result</legend>
