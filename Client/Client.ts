@@ -2,18 +2,21 @@ namespace testMingiDB {
   window.addEventListener("load", start);
   let database: string = new URL(location.href).search.slice(1);
 
-  function start(_event: Event): void {
-    send("", null);
+  async function start(_event: Event): Promise<void> {
+    try {
+      await send("", null);
+    } catch (_e: unknown) {
+      let output: string = `Add the correct address of your database as get-parameter in the url.\n`;
+      output += `Example .../Client.html?https://mywebspace/Database\n\n`;
+      output += _e;
+      output += `\n\nSee more information in the console.`;
+      alert(output);
+    }
     document.forms[0].addEventListener("click", hndButton);
   }
 
   async function send(_query: string, _data: Object): Promise<boolean> {
-    let response: Response = await fetch(database, {
-      method: "GET",
-      mode: "cors",
-      headers: { "Content-Type": "application/json" }
-    });
-    console.log(response);
+    let response: Response = await fetch(database);
     return true;
   }
 
