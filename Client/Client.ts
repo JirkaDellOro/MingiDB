@@ -4,7 +4,7 @@ namespace testMingiDB {
 
   async function start(_event: Event): Promise<void> {
     try {
-      await send("", null);
+      await send("?", {});
     } catch (_e: unknown) {
       let output: string = `Add the correct address of your database as get-parameter in the url.\n`;
       output += `Example .../Client.html?https://mywebspace/Database\n\n`;
@@ -16,8 +16,13 @@ namespace testMingiDB {
   }
 
   async function send(_query: string, _data: Object): Promise<boolean> {
-    let response: Response = await fetch(database);
+    let response: Response = await fetch(database + _query + "&data=" + JSON.stringify(_data));
+    output(await response.json());
     return true;
+  }
+
+  function output(_response: Object): void {
+    document.querySelector("textarea").value = JSON.stringify(_response, null, 2);
   }
 
   function hndButton(_event: Event): void {
@@ -25,6 +30,7 @@ namespace testMingiDB {
     let formdata: FormData = new FormData(document.forms[0]);
     let collection: FormDataEntryValue = formdata.get("collection");
     let query: string = `?command=${command}&collection=${collection}`;
+    let data: Object = {};
 
     switch (command) {
       case "insert":
@@ -33,6 +39,6 @@ namespace testMingiDB {
       case "update":
     }
 
-
+    send(query, data);
   }
 }
