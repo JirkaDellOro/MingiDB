@@ -26,6 +26,9 @@ namespace testMingiDB {
   }
 
   function hndButton(_event: Event): void {
+    if (!(_event.target instanceof HTMLButtonElement))
+      return;
+      
     let command: string = (<HTMLButtonElement>_event.target).textContent;
     let formdata: FormData = new FormData(document.forms[0]);
     let collection: FormDataEntryValue = formdata.get("collection");
