@@ -11,8 +11,10 @@
  * @author Jirka Dell'Oro-Friedl, HFU, 2022
  * @see www.github.com/JirkaDellOro/MingiDB
  */
-
+  header('Access-Control-Allow-Origin: *');
+  header('Access-Control-Allow-Headers: *');
   error_reporting(E_ERROR);
+  
   $command = $_GET["command"];
   $collection = $_GET["collection"];
   $id = $_GET["id"];

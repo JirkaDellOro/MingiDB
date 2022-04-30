@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MingiDB-Client</title>
+  <style>
+    span {
+      display: inline-block;
+      width: 5em;
+    }
+
+    button {
+      display: inline-block;
+      width: 6em;
+      margin-top: 1em;
+    }
+  </style>
+  <script src="Client.js"></script>
+</head>
+
+<body>
+  <h1>MingiDB-Client</h1>
+  <form>
+    <fieldset>
+      <legend>Collection</legend>
+      <span>Name</span><input type="text" name="collection" id="" /><br />
+      <button type="button">show</button>
+      <button type="button">create</button>
+      <button type="button">drop</button>
+    </fieldset>
+    <fieldset>
+      <legend>Document</legend>
+      <span>Id</span><input type="text" name="id" id="" /><br />
+      <span>Name</span><input type="text" name="name" id="" /><br />
+      <span>Firstname</span><input type="text" name="firstname" id="" /><br />
+      <span>Age</span><input type="text" name="age" id="" /><br />
+      <span>Passed</span><input type="text" name="passed" id="" /><br />
+      <button type="button">insert</button>
+      <button type="button">delete</button>
+      <button type="button">find</button>
+      <button type="button">update</button>
+    </fieldset>
+    <fieldset>
+      <legend>Result</legend>
+      <textarea name="Result" id="" cols="60" rows="20"></textarea>
+    </fieldset>
+  </form>
+</body>
+
+</html>
