@@ -1,7 +1,16 @@
+/**
+ * MingiDB Test-Client
+ * An example client to help get acquainted with MingiDB.
+ * 
+ * @author Jirka Dell'Oro-Friedl, HFU, 2022
+ * @see www.github.com/JirkaDellOro/MingiDB
+ * @license MIT License
+ */
 namespace testMingiDB {
   window.addEventListener("load", start);
   let database: string = new URL(location.href).search.slice(1);
 
+  // check if a MingiDB installation is referred to as the parameter for the client
   async function start(_event: Event): Promise<void> {
     try {
       await send("?", null);
@@ -15,6 +24,7 @@ namespace testMingiDB {
     document.forms[0].addEventListener("click", hndButton);
   }
 
+  // send a query together with the data if applicable
   async function send(_query: string, _data: Object): Promise<boolean> {
     let query: string = _query + (_data ? "&data=" + JSON.stringify(_data) : "");
     (<HTMLInputElement>document.querySelector("input#query")).value = query;
@@ -24,10 +34,12 @@ namespace testMingiDB {
     return true;
   }
 
+  // show MingiDB's response in the textarea
   function output(_response: Object): void {
     document.querySelector("textarea").value = JSON.stringify(_response, null, 2);
   }
 
+  // react to the buttons, build the query and the data accordingly and call send
   function hndButton(_event: Event): void {
     if (_event.target instanceof HTMLAnchorElement)
       return hndAnchor(_event);
@@ -67,6 +79,7 @@ namespace testMingiDB {
     send(query, data);
   }
 
+  // for convenience, clear or randomly fill the fields of the document-fieldset when clicking on the anchors
   function hndAnchor(_event: Event): void {
     let command: string = (<HTMLElement>_event.target).textContent;
     let fields: string[] = ["name", "firstname", "age", "passed", "id"];

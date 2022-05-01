@@ -9,6 +9,7 @@
  * 
  * @author Jirka Dell'Oro-Friedl, HFU, 2022
  * @see www.github.com/JirkaDellOro/MingiDB
+ * @license MIT License
  */
   header('Access-Control-Allow-Origin: *');
   header('Access-Control-Allow-Headers: *');
