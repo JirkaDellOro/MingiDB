@@ -22,10 +22,10 @@
   $result = array();
   $result["status"] = "success";
 
-  if (!isset($command))
+  if (!$command)
     failure("no command specified. See MingiDB on Github!");
 
-  if (!isset($collection) && $command != "show")
+  if (!$collection && $command != "show")
     failure("no collection specified");
 
   $filename = $collection.".json";
@@ -73,9 +73,15 @@
 
   // create a new collection
   function create($_filename) {
+    if (file_exists($_filename))
+      return failure("collection already exists");
+
     $file = fopen($_filename, "w+");
     if (!$file)
       return failure(error_get_last()["message"]);
+    
+    if (!fwrite($file, "{}")) 
+      failure(error_get_last()["message"].":".error_get_last()["line"]);
   }
 
 
@@ -135,7 +141,7 @@
     global $result;      
     $found = array();
     
-    if (isset($_id)) {
+    if ($_id) {
       if (!$json[$_id])
         return failure("id not found");   
       
@@ -156,7 +162,7 @@
   // change values of a document in the collection
   // id must be provided to identify the document to update
   function update($_filename, $_id, $_data) {
-    if (!isset($_id))
+    if (!$_id)
       return failure("id required to update a document");
     
     $json = readCollection($_filename);
@@ -193,6 +199,9 @@
       return;
     }
 
+    if ($content == "{}")
+      return array();
+
     $json= json_decode($content, true) or array();
     if (!$json)
       failure(error_get_last()["message"]); 
@@ -203,7 +212,10 @@
   // write the complete collection to the files
   function writeCollection($_filename, $_json) {
     $file = fopen($_filename, "w+");
-    if (!fwrite($file, json_encode($_json, JSON_PRETTY_PRINT))) 
+    $content = json_encode($_json, JSON_PRETTY_PRINT);
+    if ($content == "[]")
+      $content = "{}";
+    if (!fwrite($file, $content)) 
       failure(error_get_last()["message"].":".error_get_last()["line"]);
 
 	  fclose($file);

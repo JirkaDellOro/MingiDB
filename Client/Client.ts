@@ -29,6 +29,8 @@ namespace testMingiDB {
   }
 
   function hndButton(_event: Event): void {
+    if (_event.target instanceof HTMLAnchorElement)
+      return hndAnchor(_event);
     if (!(_event.target instanceof HTMLButtonElement))
       return;
 
@@ -48,7 +50,7 @@ namespace testMingiDB {
           return alert("To delete a document, pass the id");
         data = {};
         query += `&id=${id}`;
-        break; 
+        break;
       case "find":
         if (!id)
           break;
@@ -59,9 +61,39 @@ namespace testMingiDB {
         if (!id)
           return alert("To update a document, pass the id");
         query += `&id=${id}`;
-        break; 
+        break;
     }
 
     send(query, data);
+  }
+
+  function hndAnchor(_event: Event): void {
+    let command: string = (<HTMLElement>_event.target).textContent;
+    let fields: string[] = ["name", "firstname", "age", "passed", "id"];
+    console.log(command);
+    switch (command) {
+      case "Clear":
+        fields.forEach((_name) => (<HTMLInputElement>document.querySelector(`[name=${_name}]`)).value = "");
+        break;
+      case "Fill":
+        fields.forEach((_name) => {
+          let element: HTMLInputElement = (<HTMLInputElement>document.querySelector(`[name=${_name}]`));
+          switch (_name) {
+            case "name":
+              element.value = Math.random() < 0.5 ? "Smith" : "Jones";
+              break;
+            case "firstname":
+              element.value = Math.random() < 0.5 ? "Paul" : "Mary";
+              break;
+            case "age":
+              element.value = (18 + Math.random() * 5).toFixed(0);
+              break;
+            case "passed":
+              element.value = Math.random() < 0.5 ? "true" : "false";
+              break;
+          }
+        });
+        break;
+    }
   }
 }
