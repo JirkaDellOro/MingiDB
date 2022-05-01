@@ -22,6 +22,9 @@
   $result = array();
   $result["status"] = "success";
 
+  if (!isset($command))
+    failure("no command specified. See MingiDB on Github!");
+
   if (!isset($collection) && $command != "show")
     failure("no collection specified");
 
