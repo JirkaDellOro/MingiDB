@@ -76,6 +76,6 @@ command=find&collection=NameOfCollection&data={KeyValuePairs}
 where data contains a filter. Only the documents matching the filter will be retrieved. If data is the empty filter {}, all documents of the collection are retrieved.
 ### Update a document
 <pre>
-command=find&collection=NameOfCollection&id=IdOfTheDocument&data={KeyValuePairs}
+command=update&collection=NameOfCollection&id=IdOfTheDocument&data={KeyValuePairs}
 </pre>
 where data contains the values to change to at the given key within the document specified by id.
