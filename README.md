@@ -8,7 +8,7 @@ Mimics some commands used with MongoDB, but uses single json-files as collection
 Simply copy the script file 'index.php' into a folder for your database on your server running php. Make sure it has the rights to create, delete and change files on your server.
 
 # Example/Test/Tutorial  
-The following table shows how to do some CRUD operations (Create, Read, Update, Delete) using MingiDB via the browser address bar. You can also use the [example client](https://JirkaDellOro.github.io/MingiDB/Client/Client.html) to do the same and more via a clickable interface and asynchronous communication with `fetch`. Feel free to clone this repo with MingiDB and the client to start the creation of your own project from there.
+The following table shows how to get MingiDB running and do some CRUD operations (Create, Read, Update, Delete) using MingiDB via the browser address bar. You can also use the [example client](https://JirkaDellOro.github.io/MingiDB/Client/Client.html) to do the same and more via a clickable interface and asynchronous communication with `fetch`. Feel free to clone this repo with MingiDB and the client to start the creation of your own project from there.
 
 | #  | action                                                                                                                                                    | expected result                                                                                                                                                                                       |
 |----|-----------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -76,6 +76,6 @@ command=find&collection=NameOfCollection&data={KeyValuePairs}
 where data contains a filter. Only the documents matching the filter will be retrieved. If data is the empty filter {}, all documents of the collection are retrieved.
 ### Update a document
 <pre>
-command=find&collection=NameOfCollection&id=IdOfTheDocument&data={KeyValuePairs}
+command=update&collection=NameOfCollection&id=IdOfTheDocument&data={KeyValuePairs}
 </pre>
 where data contains the values to change to at the given key within the document specified by id.
