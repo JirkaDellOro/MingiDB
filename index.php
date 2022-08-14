@@ -108,6 +108,9 @@
 
   // insert a document in the collection
   function insert($_filename, $_data) {
+    if (!(is_array($_data) && array_diff_key($_data, array_keys(array_keys($_data)))))
+      return failure("no valid data to insert"); 
+
     if (!file_exists($_filename))
       return failure("collection does not exist"); 
 
